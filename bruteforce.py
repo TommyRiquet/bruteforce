@@ -7,7 +7,6 @@ valMax = 91
 
 '''
 Trying to find another way to type the password coz it's too fast
-
 '''
 
 
