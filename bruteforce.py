@@ -1,38 +1,26 @@
+import rarfile
+
 start_value = 33
 end_value = 126
 
-val1 = 33
-val2 = 32
-val3 = 32
-val4 = 32
-val5 = 32
-val6 = 32
+val = [33]
+password = ""
 
 if __name__ == '__main__':
-    
-    while True:
-        val1 = val1 + 1
-        if val1 == end_value:
-            val1 = start_value
-            val2 = val2 + 1
-            if val2 == end_value:
-                val2 = start_value
-                val3 = val3 + 1
-                if val3 == end_value:
-                    val3 = start_value
-                    val4 = val4 + 1
-                    if val4 == end_value:
-                        val4 = start_value
-                        val5 = val5 + 1
-                        if val5 == end_value:
-                            val5 = start_value
-                            val5 = val5 + 1
-                            if val5 == end_value:
-                                val5 = start_value
-                                val6 = val6 + 1
-                                if val6 == end_value:
-                                    val6 = start_value
-                                    
 
-        
-        print(chr(val1)+chr(val2)+chr(val3)+chr(val4)+chr(val5)+chr(val6))
+    with rarfile.RarFile("flag.rar") as rf:
+        while True:
+            val[0] = val[0] + 1
+            for i in range(len(val)):
+                if val[i] == end_value:
+                    val[i] = start_value
+                    try:
+                        val[i+1] = val[i+1]+1
+                    except:
+                        val.append(start_value)
+            
+            password = [chr(i) for i in val]
+            try:
+                rf.extractall(pwd=password)
+            except:
+                print("".join(password))
