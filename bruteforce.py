@@ -22,5 +22,7 @@ if __name__ == '__main__':
             password = [chr(i) for i in val]
             try:
                 rf.extractall(pwd=password)
+                print("Password: " + "".join(password))
+                exit(0)
             except:
                 print("".join(password))
